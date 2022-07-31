@@ -1,17 +1,7 @@
-import { useState, useEffect } from 'react';
-
-type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
-
-type Theme = "light" | "dark";
+import { useTheme } from '../hooks/useTheme';
 
 export const Switch = () => {
-  const [theme, setTheme] = useState<Theme>('light');
-
-  const handleChange = (e: ChangeEvent) => setTheme(e.target.checked ? 'dark' : 'light');
-  
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-  }, [theme]);
+  const [theme, handleChange] = useTheme('dark');
 
   return (
     <div className="container-switch">
